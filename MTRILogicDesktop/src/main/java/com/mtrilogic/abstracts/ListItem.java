@@ -21,7 +21,7 @@ public abstract class ListItem<M extends Model> extends SpringPanel implements L
     private int index;
     private M model;
 
-    protected abstract boolean onListItemRenderer(DefaultList<M> list, M value, int index, boolean isSelected, boolean cellHasFocus);
+    protected abstract boolean onListItemRenderer(DefaultList<M> list, M model, int index, boolean isSelected, boolean cellHasFocus);
 
     public ListItem(@NotNull ListItemListener<M> listener){
         this(null, listener);
@@ -33,7 +33,7 @@ public abstract class ListItem<M extends Model> extends SpringPanel implements L
         }
         this.renderer = renderer;
         this.listener = listener;
-        addMouseListener(new MouseAdapter() {
+        listener.getDefaultList().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 itemClick(e);

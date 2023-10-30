@@ -25,7 +25,7 @@ public abstract class TableItem<M extends Model> extends SpringPanel implements 
     private int row;
     private M model;
 
-    protected abstract boolean onTableItemRenderer(DefaultTable<M> table, M value, boolean isSelected, boolean hasFocus, int row, int column);
+    protected abstract boolean onTableItemRenderer(DefaultTable<M> table, M model, boolean isSelected, boolean hasFocus, int row, int column);
 
     public TableItem(@NotNull Class<M> clazz, @NotNull TableItemListener<M> listener){
         this(null, clazz, listener);
@@ -38,7 +38,7 @@ public abstract class TableItem<M extends Model> extends SpringPanel implements 
         this.renderer = renderer;
         this.listener = listener;
         this.clazz = clazz;
-        addMouseListener(new MouseAdapter() {
+        listener.getDefaultTable().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 itemClick(e);

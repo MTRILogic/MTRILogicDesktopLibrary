@@ -26,7 +26,7 @@ public abstract class TreeItem <EM extends ExpandableModel> extends SpringPanel 
     private int row;
     private EM model;
 
-    protected abstract boolean onTreeItemRenderer(DefaultTree<EM> tree, EM value, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus);
+    protected abstract boolean onTreeItemRenderer(DefaultTree<EM> tree, EM model, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus);
 
     public TreeItem(@NotNull Class<EM> clazz, @NotNull TreeItemListener<EM> listener){
         this(null, clazz, listener);
@@ -39,7 +39,7 @@ public abstract class TreeItem <EM extends ExpandableModel> extends SpringPanel 
         this.renderer = renderer;
         this.listener = listener;
         this.clazz = clazz;
-        addMouseListener(new MouseAdapter() {
+        listener.getDefaultTree().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 itemClick(e);

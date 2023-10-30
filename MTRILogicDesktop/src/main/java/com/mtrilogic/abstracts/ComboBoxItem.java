@@ -21,7 +21,7 @@ public abstract class ComboBoxItem<M extends Model> extends SpringPanel implemen
     private int index;
     private M model;
 
-    protected abstract boolean onComboBoxItemRenderer(DefaultComboBox<M> list, M value, int index, boolean isSelected, boolean cellHasFocus);
+    protected abstract boolean onComboBoxItemRenderer(DefaultComboBox<M> list, M model, int index, boolean isSelected, boolean cellHasFocus);
 
     public ComboBoxItem(@NotNull ComboBoxItemListener<M> listener) {
         this(null, listener);
@@ -33,7 +33,7 @@ public abstract class ComboBoxItem<M extends Model> extends SpringPanel implemen
         }
         this.renderer = renderer;
         this.listener = listener;
-        addMouseListener(new MouseAdapter() {
+        listener.getDefaultComboBox().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 itemClick(e);
