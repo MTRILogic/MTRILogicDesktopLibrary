@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MTRILogicDesktopLibrary.MTRILogicDesktop:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MTRILogicDesktopLibrary_MTRILogicDesktop_jar</output-path>
+    <root id="archive" name="MTRILogicDesktopLibrary.MTRILogicDesktop.jar">
+      <element id="module-output" name="MTRILogicDesktopLibrary.MTRILogicDesktop.main" />
+      <element id="library" level="project" name="Gradle: org.jetbrains:annotations:24.0.0" />
+    </root>
+  </artifact>
+</component>

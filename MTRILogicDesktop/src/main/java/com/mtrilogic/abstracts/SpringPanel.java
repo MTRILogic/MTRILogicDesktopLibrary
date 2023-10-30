@@ -22,7 +22,7 @@ public abstract class SpringPanel extends JPanel {
         return this;
     }
 
-    public void iterateConstraints(@NotNull String key, @NotNull IterateConstraintsListener listener, @NotNull Component... components){
+    public void iterateConstraints(@NotNull String key, @NotNull IterateConstraintsListener listener, Component... components){
         SpringLayout layout = (SpringLayout) getLayout();
         for (Component component : components){
             listener.onIterateConstraints(key, layout.getConstraints(component));

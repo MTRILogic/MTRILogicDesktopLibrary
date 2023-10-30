@@ -1,12 +1,19 @@
 package com.mtrilogic.interfaces;
 
+import com.mtrilogic.abstracts.ExpandableModel;
+import com.mtrilogic.abstracts.TreeItem;
+import com.mtrilogic.adapters.TreeAdapter;
+import com.mtrilogic.classes.DefaultTree;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.*;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("unused")
-public interface TreeItemListener extends ItemListener {
+public interface TreeItemListener<EM extends ExpandableModel> extends OnPrintLineListener {
 
-    @NotNull
-    JTree getTree();
+    void onTreeItemClick(@NotNull MouseEvent event, @NotNull TreeItem<EM> item);
+
+    @NotNull DefaultTree<EM> getDefaultTree();
+
+    @NotNull TreeAdapter<EM> getAdapter();
 }
