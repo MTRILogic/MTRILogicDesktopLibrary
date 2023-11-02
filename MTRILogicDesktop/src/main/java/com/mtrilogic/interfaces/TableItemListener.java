@@ -1,7 +1,6 @@
 package com.mtrilogic.interfaces;
 
 import com.mtrilogic.abstracts.Model;
-import com.mtrilogic.abstracts.TableItem;
 import com.mtrilogic.adapters.TableAdapter;
 import com.mtrilogic.classes.DefaultTable;
 import org.jetbrains.annotations.NotNull;
@@ -9,9 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("unused")
-public interface TableItemListener<M extends Model> extends OnPrintLineListener {
+public interface TableItemListener<M extends Model> {
 
-    void onTableItemClick(@NotNull MouseEvent event, @NotNull TableItem<M> item);
+    void onTableItemClick(@NotNull MouseEvent event, M model, int row, int column);
 
     @NotNull DefaultTable<M> getDefaultTable();
 

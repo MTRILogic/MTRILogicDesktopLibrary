@@ -1,5 +1,6 @@
 package com.mtrilogic.abstracts;
 
+import com.mtrilogic.adapters.ComboBoxAdapter;
 import com.mtrilogic.classes.DefaultComboBox;
 import com.mtrilogic.interfaces.ComboBoxItemListener;
 import org.jetbrains.annotations.NotNull;
@@ -12,14 +13,8 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings("unused")
 public abstract class ComboBoxItem<M extends Model> extends SpringPanel implements ListCellRenderer<M> {
 
-    protected final ComboBoxItemListener<M> listener;
-
+    private final ComboBoxItemListener<M> listener;
     private final DefaultListCellRenderer renderer;
-
-    private boolean cellHasFocus;
-    private boolean isSelected;
-    private int index;
-    private M model;
 
     protected abstract boolean onComboBoxItemRenderer(DefaultComboBox<M> list, M model, int index, boolean isSelected, boolean cellHasFocus);
 
@@ -35,42 +30,28 @@ public abstract class ComboBoxItem<M extends Model> extends SpringPanel implemen
         this.listener = listener;
         listener.getDefaultComboBox().addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                itemClick(e);
+            public void mouseClicked(MouseEvent event) {
+                int index = getDefaultComboBox().getSelectedIndex();
+                M model = getAdapter().getElementAt(index);
+                listener.onComboBoxItemClick(event, model, index);
             }
         });
     }
 
     @Override
     public final Component getListCellRendererComponent(JList<? extends M> list, M model, int index, boolean isSelected, boolean cellHasFocus) {
-        if (!onComboBoxItemRenderer(listener.getDefaultComboBox(), (this.model = model), (this.index = index), (this.isSelected = isSelected), (this.cellHasFocus = cellHasFocus))) {
+        if (!onComboBoxItemRenderer(getDefaultComboBox(), model, index, isSelected, cellHasFocus)) {
             return renderer.getListCellRendererComponent(list, model, index, isSelected, cellHasFocus);
         } else {
             return this;
         }
     }
 
-    public boolean isCellHasFocus() {
-        return cellHasFocus;
+    protected DefaultComboBox<M> getDefaultComboBox(){
+        return listener.getDefaultComboBox();
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public int getIndex() {
-        return index;
-    }
-
-    public M getModel() {
-        return model;
-    }
-
-    protected void printLine(@NotNull String line){
-        listener.onPrintLine(line);
-    }
-
-    private void itemClick(@NotNull MouseEvent event){
-        listener.onComboBoxItemClick(event, this);
+    protected ComboBoxAdapter<M> getAdapter(){
+        return listener.getAdapter();
     }
 }

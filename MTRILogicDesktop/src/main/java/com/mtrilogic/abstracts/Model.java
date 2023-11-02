@@ -9,7 +9,6 @@ public abstract class Model {
 
     public Model(){
         this.id = idx++;
-        System.out.println(id);
     }
 
     public final long getId() {

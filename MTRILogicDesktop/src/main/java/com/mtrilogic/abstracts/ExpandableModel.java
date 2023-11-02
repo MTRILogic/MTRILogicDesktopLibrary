@@ -11,8 +11,16 @@ public abstract class ExpandableModel extends Model implements MutableTreeNode {
     protected final DefaultMutableTreeNode node;
 
     public ExpandableModel() {
+        this(null);
+    }
+
+    public ExpandableModel(Object userObject) {
+        this(userObject, true);
+    }
+
+    public ExpandableModel(Object userObject, boolean allowsChildren) {
         super();
-        node = new DefaultMutableTreeNode();
+        node = new DefaultMutableTreeNode(userObject, allowsChildren);
     }
 
     public ExpandableModel(DefaultMutableTreeNode node) {
