@@ -13,19 +13,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("unused")
-public abstract class TreeItem <EM extends ExpandableModel> extends SpringPanel implements TreeCellRenderer {
+public abstract class TreeItem <NM extends NodeModel> extends SpringPanel implements TreeCellRenderer {
 
     private final DefaultTreeCellRenderer renderer;
-    private final TreeItemListener<EM> listener;
-    private final Class<EM> clazz;
+    private final TreeItemListener<NM> listener;
+    private final Class<NM> clazz;
 
-    protected abstract boolean onTreeItemRenderer(DefaultTree<EM> tree, EM model, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus);
+    protected abstract boolean onTreeItemRenderer(DefaultTree<NM> tree, NM model, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus);
 
-    public TreeItem(@NotNull Class<EM> clazz, @NotNull TreeItemListener<EM> listener){
+    public TreeItem(@NotNull Class<NM> clazz, @NotNull TreeItemListener<NM> listener){
         this(null, clazz, listener);
     }
 
-    public TreeItem(DefaultTreeCellRenderer renderer, @NotNull Class<EM> clazz, @NotNull TreeItemListener<EM> listener){
+    public TreeItem(DefaultTreeCellRenderer renderer, @NotNull Class<NM> clazz, @NotNull TreeItemListener<NM> listener){
         if (renderer == null){
             renderer = new DefaultTreeCellRenderer();
         }
@@ -37,8 +37,8 @@ public abstract class TreeItem <EM extends ExpandableModel> extends SpringPanel 
             public void mouseClicked(MouseEvent event) {
                 int row = getDefaultTree().getRowForLocation(event.getX(), event.getY());
                 if (row >= 0) {
-                    TreeAdapter<EM> adapter = getAdapter();
-                    EM model = adapter.getChild(adapter.getRoot(), row);
+                    TreeAdapter<NM> adapter = getAdapter();
+                    NM model = adapter.getChild(adapter.getRoot(), row);
                     listener.onTreeItemClick(event, model, row);
                 }
             }
@@ -54,11 +54,11 @@ public abstract class TreeItem <EM extends ExpandableModel> extends SpringPanel 
         }
     }
 
-    protected DefaultTree<EM> getDefaultTree(){
+    protected DefaultTree<NM> getDefaultTree(){
         return listener.getDefaultTree();
     }
 
-    protected TreeAdapter<EM> getAdapter(){
+    protected TreeAdapter<NM> getAdapter(){
         return listener.getAdapter();
     }
 }

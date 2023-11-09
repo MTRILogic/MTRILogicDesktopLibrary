@@ -1,32 +1,32 @@
 package com.mtrilogic.adapters;
 
-import com.mtrilogic.abstracts.ExpandableModel;
+import com.mtrilogic.abstracts.NodeModel;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.tree.DefaultTreeModel;
 
 @SuppressWarnings("unused")
-public class TreeAdapter<EM extends ExpandableModel> extends DefaultTreeModel {
+public class TreeAdapter<NM extends NodeModel> extends DefaultTreeModel {
 
-    private final Class<EM> clazz;
+    private final Class<NM> clazz;
 
-    public TreeAdapter(@NotNull EM rootItem, @NotNull Class<EM> clazz) {
+    public TreeAdapter(@NotNull NM rootItem, @NotNull Class<NM> clazz) {
         super(rootItem);
         this.clazz = clazz;
     }
 
-    public TreeAdapter(@NotNull EM rootItem, boolean asksAllowsChildren, @NotNull Class<EM> clazz) {
+    public TreeAdapter(@NotNull NM rootItem, boolean asksAllowsChildren, @NotNull Class<NM> clazz) {
         super(rootItem, asksAllowsChildren);
         this.clazz = clazz;
     }
 
     @Override
-    public EM getRoot() {
+    public NM getRoot() {
         return clazz.cast(super.getRoot());
     }
 
     @Override
-    public EM getChild(Object parent, int index) {
+    public NM getChild(Object parent, int index) {
         return clazz.cast(super.getChild(parent, index));
     }
 }

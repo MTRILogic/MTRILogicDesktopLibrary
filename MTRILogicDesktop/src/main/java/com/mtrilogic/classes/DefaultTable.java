@@ -1,6 +1,7 @@
 package com.mtrilogic.classes;
 
 import com.mtrilogic.abstracts.Model;
+import com.mtrilogic.abstracts.TableItem;
 import com.mtrilogic.adapters.TableAdapter;
 import org.jetbrains.annotations.NotNull;
 
@@ -53,7 +54,27 @@ public class DefaultTable<M extends Model> extends JTable {
         return clazz.cast(super.getValueAt(row, column));
     }
 
-    public <TA extends TableAdapter<M>> TA getAdapter(@NotNull Class<TA> clazz){
+    public TableAdapter<M> getAdapter(@NotNull Class<TableAdapter<M>> clazz){
         return clazz.cast(getModel());
+    }
+
+    public void setAdapter(@NotNull TableAdapter<M> adapter){
+        setModel(adapter);
+    }
+
+    public TableItem<M> getDefaultItem(Class<TableItem<M>> clazz){
+        return clazz.cast(getDefaultRenderer(String.class));
+    }
+
+    public void setDefaultItem(@NotNull TableItem<M> item){
+        setDefaultRenderer(String.class, item);
+    }
+
+    public TableItem<M> getColumnItem(Class<TableItem<M>> clazz, int column){
+        return clazz.cast(getColumnModel().getColumn(column).getCellRenderer());
+    }
+
+    public void setColumnItem(@NotNull TableItem<M> item, int column) {
+        getColumnModel().getColumn(column).setCellRenderer(item);
     }
 }

@@ -1,5 +1,6 @@
 package com.mtrilogic.classes;
 
+import com.mtrilogic.abstracts.ComboBoxItem;
 import com.mtrilogic.abstracts.Model;
 import com.mtrilogic.adapters.ComboBoxAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -39,5 +40,17 @@ public class DefaultComboBox<M extends Model> extends JComboBox<M> {
 
     public ComboBoxAdapter<M> getAdapter(){
         return (ComboBoxAdapter<M>) getModel();
+    }
+
+    public void setAdapter(@NotNull ComboBoxAdapter<M> adapter){
+        setModel(adapter);
+    }
+
+    public ComboBoxItem<M> getItem(Class<ComboBoxItem<M>> clazz){
+        return clazz.cast(getRenderer());
+    }
+
+    public void setItem(@NotNull ComboBoxItem<M> item){
+        setRenderer(item);
     }
 }

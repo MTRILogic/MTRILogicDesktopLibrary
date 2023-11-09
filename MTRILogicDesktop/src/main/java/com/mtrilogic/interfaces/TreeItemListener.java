@@ -1,6 +1,6 @@
 package com.mtrilogic.interfaces;
 
-import com.mtrilogic.abstracts.ExpandableModel;
+import com.mtrilogic.abstracts.NodeModel;
 import com.mtrilogic.adapters.TreeAdapter;
 import com.mtrilogic.classes.DefaultTree;
 import org.jetbrains.annotations.NotNull;
@@ -8,11 +8,11 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("unused")
-public interface TreeItemListener<EM extends ExpandableModel> {
+public interface TreeItemListener<NM extends NodeModel> {
 
-    void onTreeItemClick(@NotNull MouseEvent event, EM model, int row);
+    void onTreeItemClick(@NotNull MouseEvent event, NM model, int row);
 
-    @NotNull DefaultTree<EM> getDefaultTree();
+    @NotNull DefaultTree<NM> getDefaultTree();
 
-    @NotNull TreeAdapter<EM> getAdapter();
+    @NotNull TreeAdapter<NM> getAdapter();
 }

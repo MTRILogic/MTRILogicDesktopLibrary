@@ -1,12 +1,13 @@
 package com.mtrilogic.abstracts;
 
+import com.mtrilogic.interfaces.PanelListener;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings("unused")
-public abstract class BaseFrame extends JFrame {
+public abstract class BaseFrame extends JFrame implements PanelListener {
 
     protected abstract void onInitComponents(Container container);
     protected abstract void onStart();
@@ -17,9 +18,8 @@ public abstract class BaseFrame extends JFrame {
 
     public BaseFrame(@NotNull String title, @NotNull Dimension dimension) {
         super(title);
-        setSize(dimension);
-        onInitComponents(getContentPane());
-        if (onFrameConfiguration()) {
+        if (onFrameConfiguration(dimension)) {
+            onInitComponents(getContentPane());
             start();
         }
     }
@@ -29,12 +29,18 @@ public abstract class BaseFrame extends JFrame {
         onStart();
     }
 
+    @Override
+    public BaseFrame getBaseFrame() {
+        return this;
+    }
+
     @SuppressWarnings("SameReturnValue")
-    protected boolean onFrameConfiguration() {
+    protected boolean onFrameConfiguration(Dimension dimension) {
+        setDefaultLookAndFeelDecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(dimension);
         setLocationRelativeTo(null);
         setResizable(false);
-        pack();
         return true;
     }
 }

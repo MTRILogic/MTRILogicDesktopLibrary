@@ -6,24 +6,24 @@ import javax.swing.tree.TreeNode;
 import java.util.Enumeration;
 
 @SuppressWarnings("unused")
-public abstract class ExpandableModel extends Model implements MutableTreeNode {
+public abstract class NodeModel extends Model implements MutableTreeNode {
 
     protected final DefaultMutableTreeNode node;
 
-    public ExpandableModel() {
+    public NodeModel() {
         this(null);
     }
 
-    public ExpandableModel(Object userObject) {
+    public NodeModel(Object userObject) {
         this(userObject, true);
     }
 
-    public ExpandableModel(Object userObject, boolean allowsChildren) {
+    public NodeModel(Object userObject, boolean allowsChildren) {
         super();
         node = new DefaultMutableTreeNode(userObject, allowsChildren);
     }
 
-    public ExpandableModel(DefaultMutableTreeNode node) {
+    public NodeModel(DefaultMutableTreeNode node) {
         super();
         this.node = node;
     }
