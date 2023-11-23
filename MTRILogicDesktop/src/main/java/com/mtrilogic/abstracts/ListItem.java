@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -28,14 +29,7 @@ public abstract class ListItem<M extends Model> extends SpringPanel implements L
         }
         this.renderer = renderer;
         this.listener = listener;
-        listener.getDefaultList().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int index = getDefaultList().locationToIndex(e.getPoint());
-                M model = getAdapter().getElementAt(index);
-                listener.onListItemClick(e, model, index);
-            }
-        });
+        addMouseListener();
     }
 
     @Override
@@ -53,5 +47,28 @@ public abstract class ListItem<M extends Model> extends SpringPanel implements L
 
     protected ListAdapter<M> getAdapter(){
         return listener.getAdapter();
+    }
+
+    protected void addMouseListener() {
+        DefaultList<M> list = getDefaultList();
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            // Ver NOTA en el método locationToIndex de la clase DefaultList
+            public void mouseClicked(MouseEvent e) {
+                int index = list.locationToIndex(e.getPoint());
+                if (index >= 0) {
+                    M model = getAdapter().getElementAt(index);
+                    listener.onListItemClick(e, model, index);
+                } else {
+                    if (!e.isShiftDown() && !isMenuShortcutKeyDown(e)) {
+                        list.clearSelection();
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean isMenuShortcutKeyDown(InputEvent event) {
+        return (event.getModifiersEx() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()) != 0;
     }
 }
