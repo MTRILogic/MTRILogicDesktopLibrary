@@ -3,18 +3,20 @@ package com.mtrilogic.abstracts;
 @SuppressWarnings("unused")
 public abstract class Model {
 
-    private static long idx;
+    private boolean enabled;
+    private int type;
+    private long id;
 
-    protected final long id;
-    private final int type;
+    public Model() {}
 
-    public Model(){
-        this(0);
+    public Model(long id, int type, boolean enabled){
+        this.enabled = enabled;
+        this.type = type;
+        this.id = id;
     }
 
-    public Model(int type) {
-        this.type = type;
-        this.id = idx++;
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public int getType() {

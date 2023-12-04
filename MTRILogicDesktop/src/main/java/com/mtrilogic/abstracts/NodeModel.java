@@ -10,22 +10,13 @@ public abstract class NodeModel extends Model implements MutableTreeNode {
 
     protected final DefaultMutableTreeNode node;
 
-    public NodeModel() {
-        this(null);
+    public NodeModel(long id, int type, boolean enabled) {
+        this(id, type, enabled, true);
     }
 
-    public NodeModel(Object userObject) {
-        this(userObject, true);
-    }
-
-    public NodeModel(Object userObject, boolean allowsChildren) {
-        super();
-        node = new DefaultMutableTreeNode(userObject, allowsChildren);
-    }
-
-    public NodeModel(DefaultMutableTreeNode node) {
-        super();
-        this.node = node;
+    public NodeModel(long id, int type, boolean enabled, boolean allowsChildren) {
+        super(id, type, enabled);
+        node = new DefaultMutableTreeNode(this, allowsChildren);
     }
 
     @Override

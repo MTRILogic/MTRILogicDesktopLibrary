@@ -7,14 +7,10 @@ public abstract class Page extends Model{
 
     private String title, tag;
 
-    public Page(int type){
-        super(type);
-        title = "Page " + id;
-        tag = "page:" + ":" + type + ":" + id;
-    }
+    public Page() {}
 
-    public Page(int type, String title, String tag){
-        super(type);
+    public Page(long id, int type, boolean enabled, String title, String tag) {
+        super(id, type, enabled);
         this.title = title;
         this.tag = tag;
     }
