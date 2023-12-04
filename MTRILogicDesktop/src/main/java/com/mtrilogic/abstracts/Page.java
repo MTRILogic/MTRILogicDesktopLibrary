@@ -1,7 +1,5 @@
 package com.mtrilogic.abstracts;
 
-import org.jetbrains.annotations.NotNull;
-
 @SuppressWarnings("unused")
 public abstract class Page extends Model{
 
@@ -15,7 +13,7 @@ public abstract class Page extends Model{
         this.tag = tag;
     }
 
-    public final void setTitle(@NotNull String title) {
+    public final void setTitle(String title) {
         this.title = title;
     }
 
@@ -23,7 +21,7 @@ public abstract class Page extends Model{
         return title;
     }
 
-    public final void setTag(@NotNull String tag) {
+    public final void setTag(String tag) {
         this.tag = tag;
     }
 

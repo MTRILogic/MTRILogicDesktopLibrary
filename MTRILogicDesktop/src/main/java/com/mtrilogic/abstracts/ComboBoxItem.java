@@ -3,7 +3,6 @@ package com.mtrilogic.abstracts;
 import com.mtrilogic.adapters.ComboBoxAdapter;
 import com.mtrilogic.classes.DefaultComboBox;
 import com.mtrilogic.interfaces.ComboBoxItemListener;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,11 +17,11 @@ public abstract class ComboBoxItem<M extends Model> extends SpringPanel implemen
 
     protected abstract boolean onComboBoxItemRenderer(DefaultComboBox<M> list, M model, int index, boolean isSelected, boolean cellHasFocus);
 
-    public ComboBoxItem(@NotNull ComboBoxItemListener<M> listener) {
+    public ComboBoxItem(ComboBoxItemListener<M> listener) {
         this(null, listener);
     }
 
-    public ComboBoxItem(DefaultListCellRenderer renderer, @NotNull ComboBoxItemListener<M> listener) {
+    public ComboBoxItem(DefaultListCellRenderer renderer, ComboBoxItemListener<M> listener) {
         if (renderer == null) {
             renderer = new DefaultListCellRenderer();
         }

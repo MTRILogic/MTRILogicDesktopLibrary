@@ -3,7 +3,6 @@ package com.mtrilogic.abstracts;
 import com.mtrilogic.adapters.TableAdapter;
 import com.mtrilogic.classes.DefaultTable;
 import com.mtrilogic.interfaces.TableItemListener;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -21,11 +20,11 @@ public abstract class TableItem<M extends Model> extends SpringPanel implements 
 
     protected abstract boolean onTableItemRenderer(DefaultTable<M> table, M model, boolean isSelected, boolean hasFocus, int row, int column);
 
-    public TableItem(@NotNull Class<M> clazz, @NotNull TableItemListener<M> listener){
+    public TableItem(Class<M> clazz, TableItemListener<M> listener){
         this(null, clazz, listener);
     }
 
-    public TableItem(DefaultTableCellRenderer renderer, @NotNull Class<M> clazz, @NotNull TableItemListener<M> listener){
+    public TableItem(DefaultTableCellRenderer renderer, Class<M> clazz, TableItemListener<M> listener){
         if (renderer == null) {
             renderer = new DefaultTableCellRenderer();
         }

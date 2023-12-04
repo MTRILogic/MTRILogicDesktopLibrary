@@ -1,7 +1,6 @@
 package com.mtrilogic.abstracts;
 
 import com.mtrilogic.interfaces.PanelListener;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +11,11 @@ public abstract class BaseFrame extends JFrame implements PanelListener {
     protected abstract void onInitComponents(Container container);
     protected abstract void onStart();
 
-    public BaseFrame(@NotNull Dimension dimension) {
+    public BaseFrame(Dimension dimension) {
         this("Default Frame", dimension);
     }
 
-    public BaseFrame(@NotNull String title, @NotNull Dimension dimension) {
+    public BaseFrame(String title, Dimension dimension) {
         super(title);
         if (onFrameConfiguration(dimension)) {
             onInitComponents(getContentPane());

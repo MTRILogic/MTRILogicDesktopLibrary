@@ -1,7 +1,6 @@
 package com.mtrilogic.abstracts;
 
 import com.mtrilogic.interfaces.IterateConstraintsListener;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,19 +16,19 @@ public abstract class SpringPanel extends JPanel {
         setLayout(new SpringLayout());
     }
 
-    public SpringPanel with(@NotNull Component component){
+    public SpringPanel with(Component component){
         this.component = component;
         return this;
     }
 
-    public void iterateConstraints(@NotNull String key, @NotNull IterateConstraintsListener listener, Component... components){
+    public void iterateConstraints(String key, IterateConstraintsListener listener, Component... components){
         SpringLayout layout = (SpringLayout) getLayout();
         for (Component component : components){
             listener.onIterateConstraints(key, layout.getConstraints(component));
         }
     }
 
-    public SpringLayout.Constraints getConstraints(@NotNull Component component){
+    public SpringLayout.Constraints getConstraints(Component component){
         SpringLayout layout = (SpringLayout) getLayout();
         return layout.getConstraints(component);
     }

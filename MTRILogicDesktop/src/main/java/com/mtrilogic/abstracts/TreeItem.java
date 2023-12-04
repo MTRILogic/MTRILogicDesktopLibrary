@@ -3,7 +3,6 @@ package com.mtrilogic.abstracts;
 import com.mtrilogic.adapters.TreeAdapter;
 import com.mtrilogic.classes.DefaultTree;
 import com.mtrilogic.interfaces.TreeItemListener;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -21,11 +20,11 @@ public abstract class TreeItem <NM extends NodeModel> extends SpringPanel implem
 
     protected abstract boolean onTreeItemRenderer(DefaultTree<NM> tree, NM model, boolean isSelected, boolean expanded, boolean leaf, int row, boolean hasFocus);
 
-    public TreeItem(@NotNull Class<NM> clazz, @NotNull TreeItemListener<NM> listener){
+    public TreeItem(Class<NM> clazz, TreeItemListener<NM> listener){
         this(null, clazz, listener);
     }
 
-    public TreeItem(DefaultTreeCellRenderer renderer, @NotNull Class<NM> clazz, @NotNull TreeItemListener<NM> listener){
+    public TreeItem(DefaultTreeCellRenderer renderer, Class<NM> clazz, TreeItemListener<NM> listener){
         if (renderer == null){
             renderer = new DefaultTreeCellRenderer();
         }

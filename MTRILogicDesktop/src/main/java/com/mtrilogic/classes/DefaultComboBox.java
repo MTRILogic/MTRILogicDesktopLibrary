@@ -3,7 +3,6 @@ package com.mtrilogic.classes;
 import com.mtrilogic.abstracts.ComboBoxItem;
 import com.mtrilogic.abstracts.Model;
 import com.mtrilogic.adapters.ComboBoxAdapter;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.util.Vector;
@@ -13,22 +12,22 @@ public class DefaultComboBox<M extends Model> extends JComboBox<M> {
 
     private final Class<M> clazz;
 
-    public DefaultComboBox(@NotNull ComboBoxAdapter<M> adapter, @NotNull Class<M> clazz) {
+    public DefaultComboBox(ComboBoxAdapter<M> adapter, Class<M> clazz) {
         super(adapter);
         this.clazz = clazz;
     }
 
-    public DefaultComboBox(@NotNull M[] items, @NotNull Class<M> clazz) {
+    public DefaultComboBox(M[] items, Class<M> clazz) {
         super(items);
         this.clazz = clazz;
     }
 
-    public DefaultComboBox(@NotNull Vector<M> items, @NotNull Class<M> clazz) {
+    public DefaultComboBox(Vector<M> items, Class<M> clazz) {
         super(items);
         this.clazz = clazz;
     }
 
-    public DefaultComboBox(@NotNull Class<M> clazz) {
+    public DefaultComboBox(Class<M> clazz) {
         super();
         this.clazz = clazz;
     }
@@ -42,7 +41,7 @@ public class DefaultComboBox<M extends Model> extends JComboBox<M> {
         return (ComboBoxAdapter<M>) getModel();
     }
 
-    public void setAdapter(@NotNull ComboBoxAdapter<M> adapter){
+    public void setAdapter(ComboBoxAdapter<M> adapter){
         setModel(adapter);
     }
 
@@ -50,7 +49,7 @@ public class DefaultComboBox<M extends Model> extends JComboBox<M> {
         return clazz.cast(getRenderer());
     }
 
-    public void setItem(@NotNull ComboBoxItem<M> item){
+    public void setItem(ComboBoxItem<M> item){
         setRenderer(item);
     }
 }

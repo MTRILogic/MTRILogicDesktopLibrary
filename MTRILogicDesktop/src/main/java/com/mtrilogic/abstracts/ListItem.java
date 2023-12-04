@@ -3,7 +3,6 @@ package com.mtrilogic.abstracts;
 import com.mtrilogic.adapters.ListAdapter;
 import com.mtrilogic.classes.DefaultList;
 import com.mtrilogic.interfaces.ListItemListener;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,11 +18,11 @@ public abstract class ListItem<M extends Model> extends SpringPanel implements L
 
     protected abstract boolean onListItemRenderer(DefaultList<M> list, M model, int index, boolean isSelected, boolean cellHasFocus);
 
-    public ListItem(@NotNull ListItemListener<M> listener){
+    public ListItem(ListItemListener<M> listener){
         this(null, listener);
     }
 
-    public ListItem(DefaultListCellRenderer renderer, @NotNull ListItemListener<M> listener) {
+    public ListItem(DefaultListCellRenderer renderer, ListItemListener<M> listener) {
         if (renderer == null) {
             renderer = new DefaultListCellRenderer();
         }

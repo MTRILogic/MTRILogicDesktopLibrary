@@ -1,7 +1,6 @@
 package com.mtrilogic.adapters;
 
 import com.mtrilogic.abstracts.NodeModel;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.tree.DefaultTreeModel;
 
@@ -10,12 +9,12 @@ public class TreeAdapter<NM extends NodeModel> extends DefaultTreeModel {
 
     private final Class<NM> clazz;
 
-    public TreeAdapter(@NotNull NM rootItem, @NotNull Class<NM> clazz) {
+    public TreeAdapter(NM rootItem, Class<NM> clazz) {
         super(rootItem);
         this.clazz = clazz;
     }
 
-    public TreeAdapter(@NotNull NM rootItem, boolean asksAllowsChildren, @NotNull Class<NM> clazz) {
+    public TreeAdapter(NM rootItem, boolean asksAllowsChildren, Class<NM> clazz) {
         super(rootItem, asksAllowsChildren);
         this.clazz = clazz;
     }
