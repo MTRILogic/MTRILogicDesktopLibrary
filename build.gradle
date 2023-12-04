@@ -18,9 +18,9 @@ dependencies {
 publishing {
     publications {
         create("maven", MavenPublication) {
-            groupId = 'com.mtrilogic.libraries'
+            groupId = 'com.github.MTRILogic.MTRILogicDesktopLibrary'
             artifactId = 'MTRILogicDesktopLibrary'
-            version = '1.0-SNAPSHOT'
+            version = '1.0.20'
         }
     }
 
