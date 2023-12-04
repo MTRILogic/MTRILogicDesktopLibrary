@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'maven-publish'
 }
 
 group = 'com.mtrilogic.MTRILogicDesktopLibrary'
@@ -13,23 +12,6 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.2')
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
-}
-
-publishing {
-    publications {
-        create("maven", MavenPublication) {
-            groupId = 'com.github.MTRILogic.MTRILogicDesktopLibrary'
-            artifactId = 'MTRILogicDesktopLibrary'
-            version = '1.0.20'
-        }
-    }
-
-    repositories {
-        maven {
-            name 'JitPack'
-            url 'https://jitpack.io'
-        }
-    }
 }
 
 test {
