@@ -56,10 +56,10 @@ public abstract class ListItem<M extends Model> extends SpringPanel implements L
             // Ver NOTA en el método locationToIndex de la clase DefaultList
             public void mouseClicked(MouseEvent e) {
                 int index = list.locationToIndex(e.getPoint());
-                //if (index >= 0) {
+                if (index >= 0) {
                     M model = getAdapter().getElementAt(index);
                     listener.onListItemClick(e, model, index);
-                /*/} else {
+                } /*/else {
                     if (!e.isShiftDown() && !isMenuShortcutKeyDown(e)) {
                         list.clearSelection();
                     }
